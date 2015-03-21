@@ -4,7 +4,7 @@
 
 Markdown editor
 
-[http://sugarshin.github.io/rmd/](//sugarshin.github.io/rmd/)
+[https://sugarshin.github.io/rmd/](https://sugarshin.github.io/rmd/)
 
 ## Contributing
 
