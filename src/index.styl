@@ -1,0 +1,85 @@
+@charset "utf-8"
+@import "../node_modules/nib/lib/nib/*"
+
+normalize-css()
+
+html
+  height 100%
+body
+  font-family "Open Sans" arial "游ゴシック" "Yu Gothic" YuGothic "Hiragino Kaku Gothic ProN" Meiryo sans-serif
+  color #323b43
+  background #f4f7f9
+  height 100%
+
+.g-header
+  background #323b43
+  height 20px
+  position absolute
+  width 100%
+  top 0
+  left 0
+  h1
+    margin 0
+    font-size 12px
+    text-indent .5em
+    a
+      color #f4f7f9
+      text-decoration none
+
+.app
+  height 100%
+  padding-top 20px
+  box-sizing border-box
+
+.rmd-wrapper
+  height 100%
+
+.rmd
+  overflow hidden
+  height 100%
+
+.editor-wrapper
+  float left
+  width 50%
+  height 100%
+  textarea
+    border 0
+    width 100%
+    height 100%
+    box-sizing border-box
+    padding 1em
+    outline none
+
+.preview-wrapper
+  float left
+  width 50%
+  box-sizing border-box
+  padding 1em
+
+.preview-content
+  & > div > *:first-child
+    margin-top 0
+  code
+    background #59626a
+    font-family "Source Code Pro" Menlo Consolas "Courier New" monospace
+    border 1px solid
+    border-radius 3px
+    padding .3em .5em
+    line-height 1.5
+    color #f4f7f9
+    &.code
+      display block
+
+@media only screen and (max-width: 768px)
+  .app
+    padding-top 0
+  .rmd
+    overflow visible
+  .editor-wrapper
+    float none
+    width auto
+    padding-top 20px
+  .preview-wrapper
+    float none
+    width auto
+    height 100%

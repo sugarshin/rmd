@@ -1,0 +1,32 @@
+{
+  "name": "rmd",
+  "version": "0.0.1",
+  "description": "Markdown editor",
+  "repository": "git@github.com:sugarshin/rmd.git",
+  "scripts": {
+    "start": "npm run jade && npm run browserify && beefy ./src/js/main.jsx --cwd dest --open --live --debug=false -- -t babelify -t stylify --extension='.jsx'",
+    "jade": "jade src/ -o dest/",
+    "browserify": "browserify -t babelify -t stylify --extension='.jsx' ./src/js/main.jsx -o ./dest/main.js",
+    "replace-min": "replace 'main.js' 'main.min.js' dest/index.html",
+    "uglify": "uglifyjs dest/main.js -m -c warnings=false --comments '/\\/*!/' -o dest/main.min.js",
+    "build": "npm run jade && npm run browserify && npm run uglify && npm run replace-min",
+    "deploy": "git subtree push --prefix=dest/ origin gh-pages --squash"
+  },
+  "author": "sugarshin",
+  "license": "MIT",
+  "devDependencies": {
+    "babelify": "^5.0.4",
+    "beefy": "^2.1.3",
+    "browserify": "^9.0.3",
+    "jade": "^1.9.2",
+    "replace": "^0.3.0",
+    "uglify-js": "^2.4.17"
+  },
+  "dependencies": {
+    "insert-css": "^0.2.0",
+    "md2react": "^0.5.2",
+    "nib": "^1.1.0",
+    "react": "^0.13.1",
+    "stylify": "^1.2.0"
+  }
+}
