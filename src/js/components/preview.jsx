@@ -1,27 +1,30 @@
-// Preview
-
-"use strict";
-
 import React from 'react';
-global.React = React;
+import Markdown from 'react-remarkable';
 
-import md2react from 'md2react';
+export default class Preview extends React.Component {
 
-export default React.createClass({
-  propTypes: {
-    body: React.PropTypes.string
-  },
-
-  getDefaultProps() {
+  static get propTypes() {
     return {
+      body: React.PropTypes.string
+    };
+  }
+
+  static get defaultProps() {
+    return  {
       body: ''
     };
-  },
+  }
+
+  constructor(props) {
+    super(props);
+  }
 
   render() {
-    var el = md2react(this.props.body, {gfm: true, breaks: true});
     return (
-      <div className="preview-content">{el}</div>
+      <div className="preview-content">
+        <Markdown>{this.props.body}</Markdown>
+      </div>
     );
   }
-});
+
+}

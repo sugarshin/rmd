@@ -1,22 +1,25 @@
-// Editor
-
-"use strict";
-
 import React from 'react';
 
-export default React.createClass({
-  propTypes: {
-    value: React.PropTypes.string,
-    onChange: React.PropTypes.func.isRequired
-  },
+export default class Editor extends React.Component {
 
-  componentDidMount() {
-    this.refs.textarea.getDOMNode().focus();
-  },
+  static get propTypes() {
+    return {
+      value: React.PropTypes.string,
+      onChange: React.PropTypes.func.isRequired
+    };
+  }
 
   _onChange(ev) {
     this.props.onChange(ev);
-  },
+  }
+
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.refs.textarea.getDOMNode().focus();
+  }
 
   render() {
     return (
@@ -24,9 +27,10 @@ export default React.createClass({
         <textarea
           ref="textarea"
           value={this.props.value}
-          onChange={this._onChange}
+          onChange={this._onChange.bind(this)}
         />
       </div>
     );
   }
-});
+
+}

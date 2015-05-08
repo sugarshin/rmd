@@ -2,7 +2,7 @@
 
 [![GitHub version](https://badge.fury.io/gh/sugarshin%2Frmd.svg)](http://badge.fury.io/gh/sugarshin%2Frmd) [![License](http://img.shields.io/:license-mit-blue.svg)](http://sugarshin.mit-license.org/)
 
-Markdown editor
+Markdown editor on React
 
 [https://sugarshin.github.io/rmd/](https://sugarshin.github.io/rmd/)
 
@@ -10,13 +10,8 @@ Markdown editor
 
 ### deps
 
-* insert-css
-* md2react
-* nib
 * react
-* stylify
-
-**please use v0.12.0 Node**
+* react-remarkable
 
 ## License
 
