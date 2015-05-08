@@ -21,8 +21,10 @@ export default class Preview extends React.Component {
 
   render() {
     return (
-      <div className="preview-content">
-        <Markdown>{this.props.body}</Markdown>
+      <div className="preview-wrapper">
+        <div className="preview-content">
+          <Markdown>{this.props.body}</Markdown>
+        </div>
       </div>
     );
   }

@@ -56,11 +56,9 @@ export default class App extends React.Component {
               value={this.state.value}
               onChange={this._onChangeText.bind(this)}
             />
-            <div className="preview-wrapper">
-              <Preview
-                body={this.state.value}
-              />
-            </div>
+            <Preview
+              body={this.state.value}
+            />
           </div>
         </div>
       </div>
