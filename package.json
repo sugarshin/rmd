@@ -32,7 +32,11 @@
     "watchify": "^3.2.1"
   },
   "dependencies": {
+    "eventemitter3": "^1.0.2",
+    "flux": "^2.0.3",
     "insert-css": "^0.2.0",
+    "keymirror": "^0.1.1",
+    "native-promise-only": "^0.7.8-a",
     "react": "~0.13.2",
     "react-remarkable": "^1.1.1"
   }

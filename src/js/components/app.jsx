@@ -4,47 +4,58 @@ import Header from './header';
 import Editor from './editor';
 import Preview from './preview';
 
+import Store from '../stores/store';
+import action from '../actions/action';
+
+let store = new Store;
+global.store = store
 export default class App extends React.Component {
 
   constructor(props) {
     super(props);
 
-    this.state = {
-      value: ''
-    };
+    action.fetch();
+
+    this.state = {};
   }
 
-  save() {
-    localStorage.setItem('rmd', JSON.stringify(this.state));
-  }
-
-  fetch() {
-    return JSON.parse(localStorage.getItem('rmd'));
-  }
-
-  _onChangeText(ev) {
+  _onChangeText() {
     this.setState({
-      value: ev.target.value
+      value: store.getText()
     });
   }
 
   // init localStorage
-  componentWillMount() {
-    let initialVal = '# rmd\n\nis markdown editor';
-    if (localStorage.getItem('rmd') === null) {
-      localStorage.setItem('rmd', JSON.stringify({value: initialVal}));
-    }
-  }
+  // componentWillMount() {
+  //   let initialVal = '# rmd\n\nis markdown editor';
+  //   if (localStorage.getItem('rmd') === null) {
+  //     localStorage.setItem('rmd', JSON.stringify({value: initialVal}));
+  //   }
+  // }
+
+  // componentWillMount() {
+  //   this.setState({
+  //     value: store.getText()
+  //   });
+  // }
 
   componentDidMount() {
-    this.setState({
-      value: this.fetch().value
-    });
+    store.addListener(this._onChangeText.bind(this));
+    // this.setState({
+    //   value: store.getText()
+    // });
+    // this.setState({
+    //   value: this.fetch().value
+    // });
   }
 
-  componentDidUpdate() {
-    this.save();
+  componentWillUnmount() {
+    store.removeListener(this._onChangeText.bind(this));
   }
+
+  // componentDidUpdate() {
+  //   this.save();
+  // }
 
   render() {
     return (
@@ -54,7 +65,6 @@ export default class App extends React.Component {
           <div className="rmd">
             <Editor
               value={this.state.value}
-              onChange={this._onChangeText.bind(this)}
             />
             <Preview
               body={this.state.value}

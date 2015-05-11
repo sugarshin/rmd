@@ -1,5 +1,7 @@
 import React from 'react';
 
+import action from '../actions/action';
+
 export default class Editor extends React.Component {
 
   static get propTypes() {
@@ -9,8 +11,8 @@ export default class Editor extends React.Component {
     };
   }
 
-  _onChange(ev) {
-    this.props.onChange(ev);
+  handleChangeText(ev) {
+    action.inputText(ev.target.value);
   }
 
   constructor(props) {
@@ -26,9 +28,8 @@ export default class Editor extends React.Component {
       <div className="editor-wrapper">
         <textarea
           ref="textarea"
-          value={this.props.value}
-          onChange={this._onChange.bind(this)}
-        />
+          onChange={this.handleChangeText.bind(this)}
+        >{this.props.value}</textarea>
       </div>
     );
   }
