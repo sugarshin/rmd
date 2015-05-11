@@ -10,7 +10,7 @@ class Action {
       value: value
     });
 
-    // api.save(value);
+    api.save(value);
   }
 
   fetch() {

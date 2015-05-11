@@ -4,19 +4,20 @@ import Header from './header';
 import Editor from './editor';
 import Preview from './preview';
 
-import Store from '../stores/store';
+import store from '../stores/store';
 import action from '../actions/action';
 
-let store = new Store;
-global.store = store
 export default class App extends React.Component {
 
   constructor(props) {
     super(props);
-
-    action.fetch();
-
     this.state = {};
+  }
+
+  _onChangeInitialText() {
+    this.setState({
+      initialVal: store.getInitialText()
+    });
   }
 
   _onChangeText() {
@@ -33,14 +34,13 @@ export default class App extends React.Component {
   //   }
   // }
 
-  // componentWillMount() {
-  //   this.setState({
-  //     value: store.getText()
-  //   });
-  // }
+  componentWillMount() {
+    action.fetch();
+  }
 
   componentDidMount() {
     store.addListener(this._onChangeText.bind(this));
+    store.addListener(this._onChangeInitialText.bind(this));
     // this.setState({
     //   value: store.getText()
     // });
@@ -51,6 +51,7 @@ export default class App extends React.Component {
 
   componentWillUnmount() {
     store.removeListener(this._onChangeText.bind(this));
+    store.removeListener(this._onChangeInitialText.bind(this));
   }
 
   // componentDidUpdate() {
@@ -64,7 +65,7 @@ export default class App extends React.Component {
         <div className="rmd-wrapper">
           <div className="rmd">
             <Editor
-              value={this.state.value}
+              defaultValue={this.state.initialVal}
             />
             <Preview
               body={this.state.value}

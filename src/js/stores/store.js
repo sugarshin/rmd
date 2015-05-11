@@ -3,7 +3,7 @@ import EventEmitter from 'eventemitter3';
 import dispatcher from '../dispatcher/dispatcher';
 import { INPUT_TEXT, API_FETCH } from '../constants/constant';
 
-export default class Store extends EventEmitter {
+class Store extends EventEmitter {
 
   constructor() {
     super();
@@ -13,18 +13,12 @@ export default class Store extends EventEmitter {
     dispatcher.register(this.handler.bind(this));
   }
 
-  // save() {
-  //   localStorage.setItem('rmd', this.state.text);
-  // }
-  //
-  // fetch() {
-  //   this.state.text = localStorage.getItem('rmd');
-  // }
-
   getText() {
-    return {
-      text: this.state.text
-    };
+    return this.state.text;
+  }
+
+  getInitialText() {
+    return this.state.initialText;
   }
 
   addListener(callback) {
@@ -43,6 +37,10 @@ export default class Store extends EventEmitter {
     this.state.text = val;
   }
 
+  changeInitialText(val) {
+    this.state.initialText = val;
+  }
+
   handler(action) {
     switch(action.actionType) {
       case INPUT_TEXT:
@@ -51,7 +49,7 @@ export default class Store extends EventEmitter {
         break;
 
       case API_FETCH:
-        this.changeText(action.value);
+        this.changeInitialText(action.value);
         this.emitChange();
         break;
 
@@ -60,3 +58,5 @@ export default class Store extends EventEmitter {
   }
 
 }
+
+export default new Store

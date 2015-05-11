@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "start": "npm run jade && npm run browserify && npm run serve",
-    "serve": "budo ./src/js/main.jsx --dir dest --live -v -- -t babelify -t stylify --extension='.jsx' | garnish",
+    "serve": "budo ./src/js/main.jsx --live --dir dest --serve dest -v -- -t babelify -t stylify --extension='.jsx' | garnish",
     "jade": "jade src/ -o dest/",
     "browserify": "browserify -t babelify -t stylify --extension='.jsx' ./src/js/main.jsx -o ./dest/main.js",
     "replace-min": "replace 'main.js' 'main.min.js' dest/index.html",

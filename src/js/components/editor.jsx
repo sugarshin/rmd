@@ -6,17 +6,22 @@ export default class Editor extends React.Component {
 
   static get propTypes() {
     return {
-      value: React.PropTypes.string,
-      onChange: React.PropTypes.func.isRequired
+      defaultValue: React.PropTypes.string
     };
   }
 
   handleChangeText(ev) {
     action.inputText(ev.target.value);
+    this.setState({
+      value: ev.target.value
+    });
   }
 
   constructor(props) {
     super(props);
+    this.state = {
+      value: this.props.defaultValue
+    };
   }
 
   componentDidMount() {
@@ -29,7 +34,9 @@ export default class Editor extends React.Component {
         <textarea
           ref="textarea"
           onChange={this.handleChangeText.bind(this)}
-        >{this.props.value}</textarea>
+          value={this.state.value}
+          defaultValue={this.props.value}
+        />
       </div>
     );
   }
