@@ -1,18 +1,14 @@
 import React from 'react';
 
+import store from '../stores/store';
 import action from '../actions/action';
 
 export default class Editor extends React.Component {
 
   static get propTypes() {
     return {
-      value: React.PropTypes.string,
-      onChange: React.PropTypes.func.isRequired
+      initialVal: React.PropTypes.string
     };
-  }
-
-  handleChangeText(ev) {
-    action.inputText(ev.target.value);
   }
 
   constructor(props) {
@@ -20,7 +16,11 @@ export default class Editor extends React.Component {
   }
 
   componentDidMount() {
-    this.refs.textarea.getDOMNode().focus();
+    React.findDOMNode(this.refs.textarea).focus();
+  }
+
+  handleInputText(ev) {
+    action.inputText(ev.target.value);
   }
 
   render() {
@@ -28,8 +28,9 @@ export default class Editor extends React.Component {
       <div className="editor-wrapper">
         <textarea
           ref="textarea"
-          onChange={this.handleChangeText.bind(this)}
-        >{this.props.value}</textarea>
+          defaultValue={this.props.initialVal}
+          onInput={this.handleInputText.bind(this)}
+        ></textarea>
       </div>
     );
   }

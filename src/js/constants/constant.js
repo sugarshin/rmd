@@ -1,6 +1,6 @@
-import keymirror from 'keymirror';
+import keyMirror from 'keymirror';
 
-export default keymirror({
-  INPUT_TEXT: null,
-  API_FETCH: null
+export default keyMirror({
+  FETCH_TEXT: null,
+  INPUT_TEXT: null
 });

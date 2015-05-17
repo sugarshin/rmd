@@ -1,58 +1,50 @@
 import EventEmitter from 'eventemitter3';
 
 import dispatcher from '../dispatcher/dispatcher';
-import { INPUT_TEXT, API_FETCH } from '../constants/constant';
+import { INPUT_TEXT, FETCH_TEXT } from '../constants/constant';
 
-export default class Store extends EventEmitter {
+class Store extends EventEmitter {
 
   constructor() {
     super();
 
-    this.state = {};
+    this.state = {
+      text: ''
+    };
 
     dispatcher.register(this.handler.bind(this));
   }
 
-  // save() {
-  //   localStorage.setItem('rmd', this.state.text);
-  // }
-  //
-  // fetch() {
-  //   this.state.text = localStorage.getItem('rmd');
-  // }
-
   getText() {
-    return {
-      text: this.state.text
-    };
+    return this.state.text;
   }
 
-  addListener(callback) {
+  addChangeListener(callback) {
     this.on('change', callback);
   }
 
-  removeListener(callback) {
+  removeChangeListener(callback) {
     this.off('change', callback);
   }
 
-  emitChange() {
+  _emitChange() {
     this.emit('change');
   }
 
-  changeText(val) {
+  _changeText(val) {
     this.state.text = val;
   }
 
   handler(action) {
     switch(action.actionType) {
       case INPUT_TEXT:
-        this.changeText(action.value);
-        this.emitChange();
+        this._changeText(action.value);
+        this._emitChange();
         break;
 
-      case API_FETCH:
-        this.changeText(action.value);
-        this.emitChange();
+      case FETCH_TEXT:
+        this._changeText(action.value);
+        this._emitChange();
         break;
 
       default:
@@ -60,3 +52,5 @@ export default class Store extends EventEmitter {
   }
 
 }
+
+export default new Store

@@ -1,23 +1,29 @@
 import Promise from 'native-promise-only';
 
+const DEFAULT_TEXT = `# rmd\n\nis Markdown editor`;
+
 class API {
 
   fetch(callback) {
     this._fetch()
-      .then((text) => {
-        callback(text);
-      })
-      .catch(this._onError);
+    .then((text) => {
+      callback(text);
+    })
+    .catch(this._onError);
   }
 
   save(value, callback) {
     this._save(value)
-      .then((text) => {
-        if (typeof callback === 'function') {
-          callback(text);
-        }
-      })
-      .catch(this._onError);
+    .then((text) => {
+      if (typeof callback === 'function') {
+        callback(text);
+      }
+    })
+    .catch(this._onError);
+  }
+
+  fetchSync() {
+    return localStorage.getItem('rmd') || DEFAULT_TEXT;
   }
 
   _fetch() {
