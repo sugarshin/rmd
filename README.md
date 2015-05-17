@@ -6,13 +6,6 @@ Markdown editor on React
 
 [https://sugarshin.github.io/rmd/](https://sugarshin.github.io/rmd/)
 
-## Contributing
-
-### deps
-
-* react
-* react-remarkable
-
 ## License
 
 [MIT](http://sugarshin.mit-license.org/)

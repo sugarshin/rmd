@@ -1,6 +1,6 @@
 {
   "name": "rmd",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Markdown editor on React",
   "repository": "git@github.com:sugarshin/rmd.git",
   "private": true,
@@ -12,7 +12,7 @@
     "replace-min": "replace 'main.js' 'main.min.js' dest/index.html",
     "uglify": "uglifyjs dest/main.js -m -c warnings=false --comments '/\\/*!/' -o dest/main.min.js",
     "build": "npm run jade && npm run replace-min && npm run browserify && npm run uglify",
-    "deploy": "git subtree push --prefix=dest/ origin gh-pages --squash"
+    "deploy": "git subtree push -P dest --squash origin gh-pages"
   },
   "author": "sugarshin",
   "engines": {
