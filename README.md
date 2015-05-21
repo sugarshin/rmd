@@ -4,7 +4,7 @@
 
 Markdown editor on React
 
-[https://sugarshin.github.io/rmd/](https://sugarshin.github.io/rmd/)
+[http://sugarshin.github.io/rmd/](http://sugarshin.github.io/rmd/)
 
 ## License
 
