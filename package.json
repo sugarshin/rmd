@@ -5,10 +5,11 @@
   "repository": "git@github.com:sugarshin/rmd.git",
   "private": true,
   "scripts": {
-    "start": "npm run jade && npm run browserify && npm run serve",
-    "serve": "budo ./src/js/main.jsx --dir dest --live -v -- -t babelify -t stylify --extension='.jsx' | garnish",
+    "start": "npm run jade && npm run browserify && npm run watchify & npm run serve",
+    "watchify": "watchify src/js/main.jsx -v -t babelify -t stylify --extension='.jsx' -o dest/main.js",
+    "serve": "live-server ./dest/",
     "jade": "jade src/ -o dest/",
-    "browserify": "browserify -t babelify -t stylify --extension='.jsx' ./src/js/main.jsx -o ./dest/main.js",
+    "browserify": "browserify -t babelify -t stylify --extension='.jsx' src/js/main.jsx -o dest/main.js",
     "replace-min": "replace 'main.js' 'main.min.js' dest/index.html",
     "uglify": "uglifyjs dest/main.js -m -c warnings=false --comments '/\\/*!/' -o dest/main.min.js",
     "build": "npm run jade && npm run replace-min && npm run browserify && npm run uglify",
@@ -19,25 +20,24 @@
     "node": "0.12.x"
   },
   "license": "MIT",
-  "devDependencies": {
-    "babelify": "^6.0.2",
-    "browserify": "^10.1.3",
-    "budo": "^4.0.0",
-    "garnish": "^2.1.3",
-    "jade": "^1.9.2",
-    "nib": "^1.1.0",
-    "replace": "^0.3.0",
-    "stylify": "^1.2.0",
-    "uglify-js": "^2.4.21",
-    "watchify": "^3.2.1"
-  },
   "dependencies": {
-    "eventemitter3": "^1.0.2",
+    "es6-promise": "^2.1.1",
+    "eventemitter3": "^1.1.0",
     "flux": "^2.0.3",
     "insert-css": "^0.2.0",
     "keymirror": "^0.1.1",
-    "native-promise-only": "^0.7.8-a",
-    "react": "~0.13.2",
+    "react": "~0.13.3",
     "react-remarkable": "^1.1.1"
+  },
+  "devDependencies": {
+    "babelify": "^6.1.1",
+    "browserify": "^10.2.1",
+    "jade": "^1.9.2",
+    "live-server": "^0.7.1",
+    "nib": "^1.1.0",
+    "replace": "^0.3.0",
+    "stylify": "^1.2.0",
+    "uglify-js": "^2.4.23",
+    "watchify": "^3.2.1"
   }
 }
