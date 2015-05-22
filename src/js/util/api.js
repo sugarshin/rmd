@@ -1,6 +1,6 @@
-import Promise from 'native-promise-only';
+import { Promise } from 'es6-promise';
 
-const DEFAULT_TEXT = `# rmd\n\nis Markdown editor`;
+const DEFAULT_TEXT = '# rmd\n\nis Markdown editor';
 
 class API {
 
