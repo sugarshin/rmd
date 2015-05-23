@@ -1,6 +1,6 @@
 {
   "name": "rmd",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Markdown editor on React",
   "repository": "git@github.com:sugarshin/rmd.git",
   "private": true,
