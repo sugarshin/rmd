@@ -3,16 +3,19 @@
 
 normalize-css()
 
+_dark = #323b43
+_light = #f4f7f9
+
 html
   height 100%
 body
   font-family "Open Sans", arial, "游ゴシック", "Yu Gothic", YuGothic, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif
-  color #323b43
-  background #f4f7f9
+  color _dark
+  background _light
   height 100%
 
 .g-header
-  background #323b43
+  background _dark
   height 20px
   position absolute
   width 100%
@@ -22,8 +25,9 @@ body
     margin 0
     font-size 12px
     text-indent .5em
+    font-weight normal
     a
-      color #f4f7f9
+      color _light
       text-decoration none
 
 .container
@@ -64,16 +68,39 @@ body
 .preview-content
   & > div > span > *:first-child
     margin-top 0
+
+  blockquote
+    border-left 4px solid lighten(_dark, 75%)
+    padding-left 1em
+    color lighten(_dark, 75%)
+  pre
+    background _dark
+    padding .5em
+    code
+      padding 0
   code
-    background #59626a
+    background _dark
+    padding .2em .5em
+    color _light
     font-family "Source Code Pro", Menlo, Consolas, "Courier New", monospace
-    border 1px solid
-    border-radius 3px
-    padding .3em .5em
     line-height 1.5
-    color #f4f7f9
-    &.code
-      display block
+  table
+    width 100%
+  thead
+    tr
+      color _light
+      background lighten(_dark, 75%)
+    th
+      font-weight normal
+  tbody
+    tr:nth-child(even)
+      background lighten(_light, 50%)
+  tr
+    line-height 2
+  ul
+    list-style circle
+  ol
+    list-style upper-roman
 
 @media only screen and (max-width: 768px)
   .app
